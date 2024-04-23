@@ -1,8 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-const errorHandler = require("../utils/error");
 const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
+  console.log(req.body);
+
   if (
     !username ||
     !email ||
@@ -11,8 +12,8 @@ const signup = async (req, res, next) => {
     email === "" ||
     password === ""
   ) {
-    next(errorHandler(400, "All fields are required"));
-}
+    res.status(400).send("All Fields are required");
+  }
   // password hashing
   const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -30,7 +31,8 @@ const signup = async (req, res, next) => {
       res.status(400).send("User already exists");
     }
   } catch (error) {
-next(error)  }
+    next(error);
+  }
 };
 module.exports = {
   signup,
