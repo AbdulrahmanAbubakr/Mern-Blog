@@ -6,6 +6,7 @@ import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import {useDispatch, useSelector}from 'react-redux'
 import {signInStart,signInSuccess,signInFailure} from '../redux/user/userSlice'
 import axios from "axios";
+import OAuth from "../components/OAuth";
 function Signin() {
   const [formData, setFormData] = useState({});
   const {loading,error:errorMessage} = useSelector(state =>state.user)
@@ -95,6 +96,7 @@ function Signin() {
                 "Sign In"
               )}
             </Button>
+            <OAuth/>
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Don't Have an account? </span>
